@@ -1,0 +1,15 @@
+*.exe
+!deployLanguage.exe
+*.pyc
+*/**/dist
+*/**/*.egg*
+*/**/build
+
+Repos/MOSIM-CSharp
+Repos/MOSIM-Unity
+Repos/MOSIM-Python
+
+Repos/Packages/MMIUnity-Core
+Repos/Packages/MMIUnity-TargetEngine
+Repos/Packages/MMU-Generator
+Repos/Packages/MMIPython-Core
