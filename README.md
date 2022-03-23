@@ -2,6 +2,16 @@
 
 The MOSIM Framework is an open modular framework for efficient and interactive simulations and analysis of realistic human motions for professional applications. It enables the synthesis of motions independently from the actual target engine utilized to visualize the motions. The framework is defined using Apache Thrift and communicates via a TCP/IP protocol using thrift as a backend. 
 
+## Usage
+
+This repository serves as a meta-repository to manage all other sub-repositories. To clone all repositories, please install [meta git](https://github.com/mateodelnorte/meta) on your system. Afterwards you can utilize
+
+```Console
+meta git clone git@github.com:dfki-asr/MOSIM.git
+```
+
+to clone this repository and all sub-repositories. 
+
 ## Contributing
 
 If you would like to contribute code you can do so through GitHub by forking the repository and sending a pull request.
