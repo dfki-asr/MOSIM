@@ -8,7 +8,6 @@ REM TODO: Adjust this to be be able to run without meta.
 
 REM call meta git fetch
 REM remove this once its merged to master
-call meta git checkout feature/InitialSetup 
 call meta git pull
 call %~dp0\git-submodules-update.bat
 call %~dp0\DefaultVariables.bat
