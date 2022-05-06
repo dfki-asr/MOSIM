@@ -7,7 +7,7 @@ SET "DEFAULT_MOSIM_MSBUILD=C:\Program Files (x86)\Microsoft Visual Studio\2019\P
 SET "DEFAULT_MOSIM_UNITY=C:\Program Files\Unity\Hub\Editor\2019.4.25f1\Editor\Unity.exe"
 SET "DEFAULT_MOSIM_TARGET_PATH=%UserProfile%\MOSIM\"
 
-
+exit /b 0
 
 
 :CheckPowershell
