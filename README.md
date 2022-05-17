@@ -1,3 +1,5 @@
+# MOSIM is now maintained at [this location](https://github.com/dfki-asr/MOSIM).
+
 # MOSIM 
 
 The MOSIM Framework is an open modular framework for efficient and interactive simulations and analysis of realistic human motions for professional applications. It enables the synthesis of motions independently from the actual target engine utilized to visualize the motions. The framework is defined using Apache Thrift and communicates via a TCP/IP protocol using thrift as a backend. 
