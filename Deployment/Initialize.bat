@@ -12,22 +12,6 @@ cd %~dp0\..
 call meta git pull
 call Deployment\git-submodules-update.bat
 call Deployment\DefaultVariables.bat
-REM Set variables persistently
-ECHO Setting environment variables to User
-SETX MOSIM_MSBUILD "%DEFAULT_MOSIM_MSBUILD%"
-SETX MOSIM_UNITY "%DEFAULT_MOSIM_UNITY%"
-SETX MOSIM_TARGET_PATH %DEFAULT_MOSIM_TARGET_PATH%
-REM set variables for current session
-
-ECHO Setting local variables for this CMD session
-SET "MOSIM_MSBUILD=%DEFAULT_MOSIM_MSBUILD%"
-SET "MOSIM_UNITY=%DEFAULT_MOSIM_UNITY%"
-SET "MOSIM_TARGET_PATH=%DEFAULT_MOSIM_TARGET_PATH%"
-
-ECHO Successfully set all variables
-ECHO MOSIM_MSBUILD is set to "%MOSIM_MSBUILD%"
-ECHO MOSIM_Unity is set to "%MOSIM_UNITY%"
-ECHO MOSIM_TARGET_PATH is set to "%MOSIM_TARGET_PATH%"
 
 
 pause

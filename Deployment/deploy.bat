@@ -19,6 +19,8 @@ ECHO "                        "
 ECHO " ---------------------- "
 ECHO.
 
+call %~dp0\DefaultVariables.bat
+
 call :CheckEnv
 
 call :argparse %*

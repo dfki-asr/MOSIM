@@ -7,6 +7,28 @@ SET "DEFAULT_MOSIM_MSBUILD=C:\Program Files (x86)\Microsoft Visual Studio\2019\P
 SET "DEFAULT_MOSIM_UNITY=C:\Program Files\Unity\Hub\Editor\2019.4.25f1\Editor\Unity.exe"
 SET "DEFAULT_MOSIM_TARGET_PATH=%UserProfile%\MOSIM\"
 
+REM Please do not adjust the following values
+REM These values are set to be used in the following session
+REM and for partial deployments. 
+
+REM Set variables persistently
+ECHO Setting environment variables to User
+SETX MOSIM_MSBUILD "%DEFAULT_MOSIM_MSBUILD%"
+SETX MOSIM_UNITY "%DEFAULT_MOSIM_UNITY%"
+SETX MOSIM_TARGET_PATH %DEFAULT_MOSIM_TARGET_PATH%
+REM set variables for current session
+
+ECHO Setting local variables for this CMD session
+SET "MOSIM_MSBUILD=%DEFAULT_MOSIM_MSBUILD%"
+SET "MOSIM_UNITY=%DEFAULT_MOSIM_UNITY%"
+SET "MOSIM_TARGET_PATH=%DEFAULT_MOSIM_TARGET_PATH%"
+
+ECHO Successfully set all variables
+ECHO MOSIM_MSBUILD is set to "%MOSIM_MSBUILD%"
+ECHO MOSIM_Unity is set to "%MOSIM_UNITY%"
+ECHO MOSIM_TARGET_PATH is set to "%MOSIM_TARGET_PATH%"
+
+
 exit /b 0
 
 
