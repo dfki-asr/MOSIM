@@ -23,7 +23,7 @@ service MMIAdapter
     core.MBoolResponse AssignInstruction(1: mmu.MInstruction instruction, 2: mmu.MSimulationState simulationState, 3: string mmuID, 4: string sessionID),
 	
 	//Basic do step routine which is executed for each frame
-	mmu.MSimulationResult DoStep(1: double time, 2: mmu.MSimulationState simulationState,3: string mmuID, 4: string sessionID),
+	mmu.MSimulationResult DoStep(1: double time, 2: mmu.MSimulationState simulationState, 3: string mmuID, 4: string sessionID),
 	
 	//Returns constraints which are relevant for the transition
     list<constraints.MConstraint> GetBoundaryConstraints(1:mmu.MInstruction instruction, 2: string mmuID, 3: string sessionID),
@@ -49,7 +49,7 @@ service MMIAdapter
 	MAdapterDescription GetAdapterDescription(),
 	
 	//Creates a session
-	core.MBoolResponse CreateSession(1: string sessionID, 2: string sceneID),
+	core.MBoolResponse CreateSession(1: string sessionID),
 	
 	//Closes the session
 	core.MBoolResponse CloseSession(1: string sessionID),
@@ -76,10 +76,10 @@ service MMIAdapter
     map<string,string> LoadMMUs(1: list<string> mmus, 2: string sessionID),
 	
 	//Creates a checkpoint for the given MMUs
-	binary CreateCheckpoint(1: string mmuID, 2: string sessionID),
+	binary CreateCheckpoint(1: string mmuID, 2: string sessionID, 3: string avatarID),
 	
 	//Restores the checkpoint of the given MMUs
-	core.MBoolResponse RestoreCheckpoint(1: string mmuID, 2: string sessionID, 3: binary checkpointData),
+	core.MBoolResponse RestoreCheckpoint(1: string mmuID, 2: string sessionID, 3: binary checkpointData, 4: string avatarID),
 }
 
 //Description format for an adapter
