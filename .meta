@@ -3,7 +3,7 @@
     "Repos/MOSIM-CSharp":"git@github.com:dfki-asr/MOSIM-CSharp.git",
 	"Repos/MOSIM-Unity":"git@github.com:dfki-asr/MOSIM-Unity.git",
 	"Repos/MOSIM-Python":"git@github.com:dfki-asr/MOSIM-Python.git",
-	
+	"Repos/Packages/MMICSharp-Core":"git@github.com:dfki-asr/MMICSharp-Core.git",
 	"Repos/Packages/MMIUnity-Core":"git@github.com:dfki-asr/MMIUnity-Core.git",
 	"Repos/Packages/MMIUnity-TargetEngine":"git@github.com:dfki-asr/MMIUnity-TargetEngine.git",
 	"Repos/Packages/MMU-Generator":"git@github.com:dfki-asr/MMU-Generator.git",
