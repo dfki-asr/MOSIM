@@ -16,4 +16,7 @@ git submodule update --remote --recursive --init
 cd %TOPLEVELREPO%/Repos/Packages/MMIUnity-Core
 git submodule update --remote --recursive --init
 
+cd %TOPLEVELREPO%/Repos/MOSIM-Unreal
+git submodule update --remote --recursive --init
+
 cd %BACK%
