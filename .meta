@@ -7,6 +7,8 @@
 	"Repos/Packages/MMIUnity-Core":"git@github.com:dfki-asr/MMIUnity-Core.git",
 	"Repos/Packages/MMIUnity-TargetEngine":"git@github.com:dfki-asr/MMIUnity-TargetEngine.git",
 	"Repos/Packages/MMU-Generator":"git@github.com:dfki-asr/MMU-Generator.git",
-	"Repos/Packages/MMIPython-Core":"git@github.com:dfki-asr/MMIPython-Core.git"
+	"Repos/Packages/MMIPython-Core":"git@github.com:dfki-asr/MMIPython-Core.git",
+	"Repos/Packages/MMI-UnrealPlugin":"git@github.com:dfki-asr/MMI-UnrealPlugin.git",
+	"Repos/MOSIM-Unreal":"git@github.com:dfki-asr/MOSIM-Unreal.git"
   }
 }
