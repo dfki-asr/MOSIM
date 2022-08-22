@@ -13,3 +13,5 @@ Repos/Packages/MMIUnity-Core
 Repos/Packages/MMIUnity-TargetEngine
 Repos/Packages/MMU-Generator
 Repos/Packages/MMIPython-Core
+
+Framework-Definition/gen-*

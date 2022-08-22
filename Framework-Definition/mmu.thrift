@@ -18,7 +18,7 @@ service MotionModelUnit
     core.MBoolResponse Initialize(1: avatar.MAvatarDescription avatarDescription, 2: map<string,string> properties),
 	
 	//Method to apply the motion instruction
-    core.MBoolResponse AssignInstruction(1: MInstruction motionInstruction,2:MSimulationState simulationState),
+    core.MBoolResponse AssignInstruction(1: MInstruction motionInstruction, 2:MSimulationState simulationState),
 	
 	//Basic do step routine which is executed for each frame
 	MSimulationResult DoStep(1: double time, 2: MSimulationState simulationState),
@@ -33,16 +33,16 @@ service MotionModelUnit
     core.MBoolResponse Abort(1:string instructionId),
 	
 	//Disposes the respective MMU
-	core.MBoolResponse Dispose(1: map<string,string> parameters),
+	core.MBoolResponse Dispose(1: string avatarID, 2: map<string,string> parameters),
 		
 	//Method to create a checkpoint
-	binary CreateCheckpoint(),
+	binary CreateCheckpoint(1: string avatarID),
 	
 	//Method to restore a checkpoint
-	core.MBoolResponse RestoreCheckpoint(1:binary data), 
+	core.MBoolResponse RestoreCheckpoint(1:binary data, 2: string avatarID), 
 
 	//Method for executing an arbitrary function (optionally)
-	map<string,string> ExecuteFunction(1:string name, 2: map<string,string> parameters)
+	map<string,string> ExecuteFunction(1:string name, 2: string avatarID, 3: map<string,string> parameters)
 }
 
 
@@ -163,15 +163,14 @@ struct MInstruction
     1: required string ID;
     2: required string Name;
     3: required string MotionType;
-    4: optional map<string,string> Properties;
-	5: optional list<constraints.MConstraint> Constraints;
-	6: optional string StartCondition;
-	7: optional string EndCondition;
-	8: optional string Action;
-	9: optional list<MInstruction> Instructions;
+    4: required string AvatarID;
+    5: optional map<string,string> Properties;
+	6: optional list<constraints.MConstraint> Constraints;
+	7: optional string StartCondition;
+	8: optional string EndCondition;
+	9: optional string Action;
+	10: optional list<MInstruction> Instructions;
 }
-
-
 
 
 

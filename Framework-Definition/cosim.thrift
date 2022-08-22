@@ -29,16 +29,16 @@ service MCoSimulationEventCallback
 service MCoSimulationAccess extends services.MMIServiceBase
 {
    //Register event handler/callback at server
-   core.MBoolResponse RegisterAtEvent(1: core.MIPAddress clientAddress, 2: string eventType);
+   core.MBoolResponse RegisterAtEvent(1: core.MIPAddress clientAddress, 2: string eventType, 3: string avatarID);
 
    //Unregister event handler/callback at server
-   core.MBoolResponse UnregisterAtEvent(1: core.MIPAddress clientAddress, 2: string eventType);
+   core.MBoolResponse UnregisterAtEvent(1: core.MIPAddress clientAddress, 2: string eventType, 3: string avatarID);
 
    //Assigns an instruction at the co-simulation
    core.MBoolResponse AssignInstruction(1: mmu.MInstruction instruction, 2: map<string,string> properties),
 
    //Aborts all instructions
-   core.MBoolResponse Abort(),
+   core.MBoolResponse Abort(1: string avatarID),
 
    //Aborts a single instruction
    core.MBoolResponse AbortInstruction(1: string instructionID),
@@ -47,10 +47,10 @@ service MCoSimulationAccess extends services.MMIServiceBase
    core.MBoolResponse AbortInstructions(1: list<string> instructionIDs),
 
    //Get the history
-   list<MCoSimulationEvents> GetHistoryFromTime(1: double startTime, 2: double endTime, 3: string eventType),
-   list<MCoSimulationEvents> GetHistoryFromFrames(1: i32 fromFrame, 2: i32 toFrame, 3: string eventType),
-   list<MCoSimulationEvents> GetHistory(1: string eventType),
+   list<MCoSimulationEvents> GetHistoryFromTime(1: double startTime, 2: double endTime, 3: string eventType, 4: string avatarID),
+   list<MCoSimulationEvents> GetHistoryFromFrames(1: i32 fromFrame, 2: i32 toFrame, 3: string eventType, 4: string avatarID),
+   list<MCoSimulationEvents> GetHistory(1: string eventType, 2: string avatarID),
   
    //Returns all events occured in the current frame
-   MCoSimulationEvents GetCurrentEvents();
+   MCoSimulationEvents GetCurrentEvents(1: string avatarID);
 }

@@ -26,7 +26,7 @@ service MMIAdapter
 	mmu.MSimulationResult DoStep(1: double time, 2: mmu.MSimulationState simulationState,3: string mmuID, 4: string sessionID),
 	
 	//Returns constraints which are relevant for the transition
-    list<constraints.MConstraint> GetBoundaryConstraints(1:mmu.MInstruction instruction,2: string mmuID, 3: string sessionID),
+    list<constraints.MConstraint> GetBoundaryConstraints(1:mmu.MInstruction instruction, 2: string mmuID, 3: string sessionID),
 
 	//Check whether the instruction can be executed given the current state
 	core.MBoolResponse CheckPrerequisites(1: mmu.MInstruction instruction, 2: string mmuID, 3: string sessionID),
@@ -35,10 +35,10 @@ service MMIAdapter
     core.MBoolResponse Abort(1: string instructionID, 2: string mmuID, 3: string sessionID),
 	
 	//Method diposes the MMU
-    core.MBoolResponse Dispose(1: string mmuID, 2: string sessionID),
+    core.MBoolResponse Dispose(1: string mmuID, 2: string sessionID, 3: string avatarID),
 
 	//Method for executing an arbitrary function (optionally)
-	map<string,string> ExecuteFunction(1:string name, 2: map<string,string> parameters, 3: string mmuID, 4: string sessionID),
+	map<string,string> ExecuteFunction(1:string name, 2: map<string,string> parameters, 3: string mmuID, 4: string sessionID, 5: string avatarID),
 		
 	//---------------------------------------------------------------------------------------------------------------------
 	
@@ -49,13 +49,13 @@ service MMIAdapter
 	MAdapterDescription GetAdapterDescription(),
 	
 	//Creates a session
-	core.MBoolResponse CreateSession(1: string sessionID),
+	core.MBoolResponse CreateSession(1: string sessionID, 2: string sceneID),
 	
 	//Closes the session
-	core.MBoolResponse CloseSession(1:string sessionID),
+	core.MBoolResponse CloseSession(1: string sessionID),
 	
 	//Method to synchronize the scene
-    core.MBoolResponse PushScene(1: scene.MSceneUpdate sceneUpdates, 2:string sessionID),
+    core.MBoolResponse PushScene(1: scene.MSceneUpdate sceneUpdates, 2: string sessionID),
 	
 	//Returns despritions of all MMUs which can be loaded
     list<mmu.MMUDescription> GetLoadableMMUs(),

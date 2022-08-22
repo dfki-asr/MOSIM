@@ -38,5 +38,6 @@ struct MTransform
     1: required string ID;
     2: required MVector3 Position;
     3: required MQuaternion Rotation;
-    4: optional string Parent;
+	4: required MVector3 Scale;
+    5: optional string Parent;
 }
