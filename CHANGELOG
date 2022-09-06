@@ -1,0 +1,31 @@
+# Framework Version 2.1.0
+
+Last Commit on MOSIM meta repository: 26066fe
+Date: 09.06.2022
+
+Changes to the Framework: 
+- AvatarID field was added to:
+   - MCoSimulationAccess.RegisterAtEvent
+   - MCoSimulationAccess.UnregisterAtEvent
+   - MCoSimulationAccess.Abort
+   - MCoSimulationAccess.GetHistoryFromTime
+   - MCoSimulationAccess.GetHistoryFromFrames
+   - MCoSimulationAccess.GetHistory
+   - MCoSimulationAccess.GetCurrentEvents
+   - MotionModelUnit.Dispose
+   - MotionModelUnit.CreateCheckpoint
+   - MotionModelUnit.RestoreCheckpoint
+   - MotionModelUnit.ExecuteFunction
+   - MMIAdapter.Dispose
+   - MMIAdapter.ExecuteFunction
+   - MMIAdapter.CreateCheckpoint
+   - MMIAdapter.RestoreCheckpoint
+   - MInstruction
+- Scale added to 
+   - MTransform
+   - MTransformUpdate
+- MAJANService.createAgent: template was renamed to templateAgent
+   
+Additional Updates: 
+- Added UE4 supporting repository to meta structure
+- Additional deploy and develop support scripts
