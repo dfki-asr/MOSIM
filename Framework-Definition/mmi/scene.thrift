@@ -84,6 +84,7 @@ struct MTransformUpdate
 	1: optional list<double> Position;
 	2: optional list<double> Rotation;
 	3: optional string Parent;
+	4: optional list<double> Scale;
 }
 
 struct MPropertyUpdate
