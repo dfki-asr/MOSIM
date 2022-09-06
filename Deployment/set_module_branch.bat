@@ -1,7 +1,9 @@
 @echo off
 
-SET DEPLOY= %CD%
-cd ..
+REM Set absolute path to meta repository
+SET HOME2=%~dp0\..
+FOR /F %%i IN ("%HOME2%") DO SET "HOME=%%~fi"
+
 set current_branch=
 for /F "delims=" %%n in ('git branch --show-current') do set "current_branch=%%n"
 if "%current_branch%"=="" echo Not a git branch! && goto :EOF
@@ -26,28 +28,27 @@ echo.
 ECHO "Set the branch for the gitmodules. Example: to set develop as branch write 'develop' "
 set /p branch=
 
-set Gmod1= %CD%\Repos\MOSIM-CSharp\.gitmodules
-set Gmod2= %CD%\Repos\MOSIM-Unity\.gitmodules
-set Gmod3= %CD%\Repos\MOSIM-Unreal\.gitmodules
-set Gmod4= %CD%\Repos\\MOSIM-Python\MMUs\.gitmodules
-set Gmod5= %CD%\Repos\Packages\MMIUnity-Core\.gitmodules
-set Gmod6= %CD%\Repos\MOSIM-Unity\MMUs\dfki.mmiunity-core\MMIUnity-Core\.gitmodules
-set Gmod7= %CD%\Repos\MOSIM-Unity\Adapter\MMIAdapterUnity\Library\PackageCache\de.dfki.mmiunity-core@0e765b5bd2\.gitmodules
-set Gmod8= %CD%\Repos\MOSIM-Unity\Services\UnityPathPlanning\UnityPathPlanningService\Library\PackageCache\de.dfki.mmiunity-core@0e765b5bd2\.gitmodules
-cd %Deploy%
+REM this is redundant, as it was already changed in MMIUnity-Core
+REM set Gmod6= %HOME%\Repos\MOSIM-Unity\MMUs\dfki.mmiunity-core\MMIUnity-Core\.gitmodules
+REM this is redundant, as it is an auto-generated library file. 
+REM set Gmod7= %HOME%\Repos\MOSIM-Unity\Adapter\MMIAdapterUnity\Library\PackageCache\de.dfki.mmiunity-core@0e765b5bd2\.gitmodules
+REM this is redundant as it is an auto-generated library package cache. 
+REM set Gmod8= %HOME%\Repos\MOSIM-Unity\Services\UnityPathPlanning\UnityPathPlanningService\Library\PackageCache\de.dfki.mmiunity-core@0e765b5bd2\.gitmodules
 
-python Scripts/String-replace.py %Gmod1% branch %branch%
-python Scripts/String-replace.py %Gmod2% branch %branch%
-python Scripts/String-replace.py %Gmod3% branch %branch%
-python Scripts/String-replace.py %Gmod4% branch %branch%
-python Scripts/String-replace.py %Gmod5% branch %branch%
-python Scripts/String-replace.py %Gmod6% branch %branch%
-python Scripts/String-replace.py %Gmod7% branch %branch%
-python Scripts/String-replace.py %Gmod8% branch %branch%
+cd %HOME%/Deployment
+
+python Scripts/String-replace.py %HOME%\Repos\MOSIM-CSharp\.gitmodules branch %branch%
+python Scripts/String-replace.py %HOME%\Repos\MOSIM-Python\MMUs\.gitmodules branch %branch%
+python Scripts/String-replace.py %HOME%\Repos\MOSIM-Unity\.gitmodules branch %branch%
+python Scripts/String-replace.py %HOME%\Repos\MOSIM-Unreal\.gitmodules branch %branch%
+
+python Scripts/String-replace.py %HOME%\Repos\Packages\MMIUnity-Core\.gitmodules branch %branch%
 
 Echo.
 Echo.
 
 Echo "All submodules should now be set to branch: %branch%"
+
+ECHO "To update the unity packages, please call Deployment\set_remote_unity_pacakges.bat separately. 
 
 pause

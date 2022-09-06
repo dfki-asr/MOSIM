@@ -1,11 +1,9 @@
 @echo off
 
-SET MANIFEST= %~dp0..\Repos\MOSIM-Unity\Demos\SimpleUnityDemo\Packages\manifest.json
-SET MANIFEST2= %~dp0..\Repos\MOSIM-Unity\Tools\SkeletonConfigurator\Packages\manifest.json
-SET DEPLOY= %CD%
-cd ..
-SET HOME=%CD%
-cd %DEPLOY%
+REM Set absolute path to meta repository
+SET HOME2=%~dp0\..
+FOR /F %%i IN ("%HOME2%") DO SET "HOME=%%~fi"
+
 SET REPLACE1= file:%HOME%/Repos/Packages/MMIUnity-Core
 SET REPLACE2= file:%HOME%/Repos/Packages/MMIUnity-TargetEngine
 
@@ -20,8 +18,17 @@ ECHO "                        "
 ECHO " ---------------------- "
 ECHO.
 
+SET MANIFEST= %HOME%\Repos\MOSIM-Unity\Demos\SimpleUnityDemo\Packages\manifest.json
 python Scripts\String-replace.py %MANIFEST% de.dfki.mmiunity-core %REPLACE1%
 python Scripts\String-replace.py %MANIFEST% de.dfki.mmiunity-targetengine %REPLACE2%
 
-python Scripts\String-replace.py %MANIFEST2% de.dfki.mmiunity-core %REPLACE1%
+SET MANIFEST= %HOME%\Repos\MOSIM-Unity\Adapter\MMIAdapterUnity\Packages\manifest.json
+python Scripts\String-replace.py %MANIFEST% de.dfki.mmiunity-core %REPLACE1%
+
+SET MANIFEST= %HOME%\Repos\MOSIM-Unity\Services\UnityPathPlanning\UnityPathPlanningService\Packages\manifest.json
+python Scripts\String-replace.py %MANIFEST% de.dfki.mmiunity-core %REPLACE1%
+
+SET MANIFEST= %~dp0..\Repos\MOSIM-Unity\Tools\SkeletonConfigurator\Packages\manifest.json
+python Scripts\String-replace.py %MANIFEST% de.dfki.mmiunity-core %REPLACE1%
+
 pause
