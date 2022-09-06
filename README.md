@@ -20,7 +20,13 @@ To ease the generation of MMUs from Unity, a [MMU-Generator](https://github.com/
 
 ## Usage
 
-This repository serves as a meta-repository to manage all other sub-repositories. To clone all repositories, please install [meta git](https://github.com/mateodelnorte/meta) on your system. Afterwards you can utilize
+This repository serves as a meta-repository to manage all other sub-repositories. To clone all repositories, please install [meta git](https://github.com/mateodelnorte/meta) on your system. Meta can be best installed using [node.js](https://nodejs.org/en/) using the command 
+```Console
+npm i -g meta
+```
+
+
+Afterwards you can utilize
 
 ```Console
 meta git clone git@github.com:dfki-asr/MOSIM.git
