@@ -19,6 +19,8 @@ ECHO "                        "
 ECHO " ---------------------- "
 ECHO.
 
+call :argparseHelp %*
+
 call %~dp0\DefaultVariables.bat
 
 call :CheckEnv
@@ -56,20 +58,22 @@ REM explorer.exe %cd%\build
 
 pause
 
-
-:argparse
+:argparseHelp
 	if "%1"=="-h" (
 		call :DisplayUsage
-		exit /b 0
+		call :halt 0
 	)
 	if "%1"=="--help" ( 
 		call :DisplayUsage
-		exit /b 0
+		call :halt 0
 	)
 	if "%1"=="/?" ( 
 		call :DisplayUsage
-		exit /b 0
+		call :halt 0
 	)
+exit /b 0
+
+:argparse
 	
 	SET REPO2=%~dp0\..\
 	FOR /F %%i IN ("%REPO2%") DO SET "TOPLEVELREPO=%%~fi"
@@ -165,9 +169,10 @@ exit /b 0
 	echo Usage of this deploy script: 
 	echo.
 	echo deploy.bat destination [-m Component] 
-	echo        -m DeployCS : Deploy only C# components
-	echo        -m DeployUnity : Deploy only Unity components
-	echo        -m DeployPython : Deploy only Python components
+	echo        -m CSharp : Deploy only C# components
+	echo        -m Unity : Deploy only Unity components
+	echo        -m Python : Deploy only Python components
+	echo        -m Packages : Copy Packages to output directory
 	echo.
 	echo deploy.bat -h: Display this information
 exit /b 0

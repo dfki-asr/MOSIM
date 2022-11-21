@@ -2,7 +2,7 @@
 REM Set absolute path to meta repository
 SET HOME2=%~dp0\..
 FOR /F %%i IN ("%HOME2%") DO SET "HOME=%%~fi"
-
+echo %HOME%
 REM get current branch
 REM cd %HOME%\Repos\MOSIM-Unity
 
