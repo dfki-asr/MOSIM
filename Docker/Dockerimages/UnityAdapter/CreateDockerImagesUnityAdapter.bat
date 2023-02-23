@@ -13,7 +13,6 @@ if not exist %MOSIM_UNITY_HOME% (
 if not exist %MOSIM_UNITY_HOME%\Adapter\MMIAdapterUnity\build (
 	echo "%MOSIM_UNITY_HOME%\Adapter\MMIAdapterUnity"
 	cd %MOSIM_UNITY_HOME%\Adapter\MMIAdapterUnity
-	echo "Hallo 1"
 	call %~dp0deploy_unity_linux.bat
 )
 
@@ -31,8 +30,8 @@ if not exist "%MOSIM_TARGET_PATH%\Dockerfile" (
 	copy "%~dp0Dockerfile" "%MOSIM_TARGET_PATH%"
 )
 
-if not exist "%MOSIM_TARGET_PATH%\run.sh" %MOSIM_TARGET_PATH%(
-	copy "%~dp0\run.sh" "%MOSIM_TARGET_PATH%"
+if not exist "%MOSIM_TARGET_PATH%\run.sh" (
+	copy "%~dp0run.sh" "%MOSIM_TARGET_PATH%"
 )
 
 cd "%MOSIM_TARGET_PATH%"
