@@ -1,0 +1,28 @@
+# Set IP to the IP address on which the docker images should be started.
+export MOSIM_IPA="192.168.168.31"
+
+# Please do not change anything in this block unless you know exactly what you are planning to do.
+# The specified port numbers are exposed by the Docker images on Docker Hub and CANNOT be changed from outside of the images.
+# To change the exposed port numbers the images need to be recrated useing the respective Dockerfiles provided on GitHub.
+export "DOCKER_STDP=8900"
+export "DOCKER_STD_IPP=${MOSIM_IPA}:${DOCKER_STDP}"
+export "LAUNCHER_STDP=9009"
+# End of block of fixed expsed port numbers.
+
+# The port numbers specified below can be changed to serve the needs of the environemnt in which the Docker images will be used.
+# PLEASE NOTE: Port numbers must be unique, i.e. numbers in the list should differ from each other and no other process in the environment is allowed to use the respective ports
+# Please make sure that there are no dangling Docker images blocking ports. The command "docker ps -a" should give you the list of all containers Docker knows about.
+
+export LAUNCHER=9009
+export BlenderIK=8911
+export CoordinateSystemMapper=8912
+export CoSimulation=8913
+export CoSimulationServ=8923
+export CoSimulationServInt=8933
+export CSharpAdapter=8914
+export GraspPoseService=8915
+export PostureBlending=8916
+export Retargeting=8917
+export SkeletonAccess=8918
+export UnityAdapter=8950
+export UnityPathPlanning=8927
