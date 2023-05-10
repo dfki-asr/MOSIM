@@ -2,6 +2,8 @@
 
 The MOSIM Framework is an open modular framework for efficient and interactive simulations and analysis of realistic human motions for professional applications. It enables the synthesis of motions independently from the actual target engine utilized to visualize the motions. The framework is defined using Apache Thrift and communicates via a TCP/IP protocol using thrift as a backend. 
 
+**Warning:** The Blender IK Service does not operate as expected right now. We recommend utilizing the new Unity IK service, which can be downloaded [here](https://cloud.dfki.de/owncloud/index.php/s/Nm6eLGDDQeCSpot)
+
 ## Framework Structure
 The framework is distributed over several git repositories on github.
 * [**MOSIM**](https://github.com/dfki-asr/MOSIM): the central repository containing the interface description, scripts for deployment, and docker files
