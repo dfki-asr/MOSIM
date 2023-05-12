@@ -34,7 +34,7 @@ Afterwards you can utilize
 meta git clone git@github.com:dfki-asr/MOSIM.git
 ```
 
-to clone this repository and all sub-repositories. 
+to clone this repository and all sub-repositories. If you do not have a git account and clone the repository with the https://github.com/dfki-asr/MOSIM.git, the meta git clone will fail. In that case, you can exchange all occurences of `git@github.com:` with `https://github.com/` in the `MOSIM/.meta` file and run `meta git update` from within the MOSIM folder. 
 
 ## Contributing
 
