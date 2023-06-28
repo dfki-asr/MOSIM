@@ -7,6 +7,7 @@ include "core.thrift"
 include "avatar.thrift"
 include "mmu.thrift"
 include "services.thrift"
+include "constraints.thrift"
 
 
 ///Struct that is used for the Co-Simulation access
@@ -45,6 +46,13 @@ service MCoSimulationAccess extends services.MMIServiceBase
 
    //Aborts a list of instructions
    core.MBoolResponse AbortInstructions(1: list<string> instructionIDs),
+   
+	//Returns constraints which are relevant for the transition
+    list<constraints.MConstraint> GetBoundaryConstraints(1:mmu.MInstruction instruction),
+
+	//Check whether the instruction can be executed given the current state
+	core.MBoolResponse CheckPrerequisites(1:mmu.MInstruction instruction),
+
 
    //Get the history
    list<MCoSimulationEvents> GetHistoryFromTime(1: double startTime, 2: double endTime, 3: string eventType, 4: string avatarID),

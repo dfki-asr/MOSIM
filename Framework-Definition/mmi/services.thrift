@@ -96,6 +96,10 @@ service MPostureBlendingService extends MMIServiceBase
 	list<avatar.MAvatarPostureValues> BlendMany (1: avatar.MAvatarPostureValues startPosture, 2: avatar.MAvatarPostureValues targetPosture, 3: list<double> weights, 4: map<avatar.MJointType, double> mask, 5:map<string,string> properties)
 }
 
+service MMotionInbetweening extends MMIServiceBase
+{
+	list<avatar.MAvatarPostureValues> Blend (1: avatar.MAvatarPostureValues start, 2: avatar.MAvatarPostureValues target, 3: double duration)
+}
 
 //Interface of the path planning service
 service MPathPlanningService extends MMIServiceBase
