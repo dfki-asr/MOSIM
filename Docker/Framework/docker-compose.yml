@@ -1,0 +1,81 @@
+version: "3.9"
+
+services:
+
+  launcher:
+    build: launcher
+    ports:
+        - ${LAUNCHER}:${LAUNCHER}
+
+  unityadapter:
+    build: Unity
+    ports:
+        - ${UnityAdapter}:${DOCKER_STDP}
+    command: [ "Adapter" , "${MIPA}" , "${DOCKER_STDP}" , "${UnityAdapter}" , "${LAUNCHER}" ]
+    depends_on:
+        - launcher
+    
+  csharpadapter:
+    build: CSharpAdapter
+    ports:
+        - ${CSharpAdapter}:${DOCKER_STDP}
+    command: [ "${MIPA}" , "${DOCKER_STDP}" , "${CSharpAdapter}" , "${LAUNCHER}" ]
+    depends_on:
+        - unityadapter
+    
+#  cosimulation:
+#    build: CoSimulation
+#    ports:
+#        - ${CoSimulation}:${DOCKER_STDP}
+#        - ${CoSimulationServ}:${DOCKER_STDP2}
+#    command: [ "${MIPA}" , "${DOCKER_STDP}" , "${DOCKER_STDP2}" , "${CoSimulation}" , "${CoSimulationServ}" , "${LAUNCHER}" ]
+#    depends_on:
+#        - csharpadapter
+
+  blenderik:
+    build: BlenderIK
+    ports:
+        - ${BlenderIK}:${DOCKER_STDP}
+    command: [ "${MIPA}" , "${DOCKER_STDP}" , "${BlenderIK}" , "${LAUNCHER}" ]
+
+  coordinatesystemmapper:
+    build: CoordinateSystemMapper
+    ports:
+        - ${CoordinateSystemMapper}:${DOCKER_STDP}
+    command: [ "${MIPA}" , "${DOCKER_STDP}" , "${CoordinateSystemMapper}" , "${LAUNCHER}" ]
+    depends_on:
+        - csharpadapter
+
+
+  postureblendingservice:
+    build: PostureBlendingService
+    ports:
+        - ${PostureBlendingService}:${DOCKER_STDP}
+    command: [ "${MIPA}" , "${DOCKER_STDP}" , "${PostureBlendingService}" , "${LAUNCHER}" ]
+    depends_on:
+        - csharpadapter
+
+  retargetingservice:
+    build: RetargetingService
+    ports:
+        - ${RetargetingService}:${DOCKER_STDP}
+    command: [ "${MIPA}" , "${DOCKER_STDP}" , "${RetargetingService}" , "${LAUNCHER}" ]
+    depends_on:
+        - csharpadapter
+
+  skeletonaccessservice:
+    build: SkeletonAccessService
+    ports:
+        - ${SkeletonAccessService}:${DOCKER_STDP}
+    command: [ "${MIPA}" , "${DOCKER_STDP}" , "${SkeletonAccessService}" , "${LAUNCHER}" ]
+    depends_on:
+        - csharpadapter
+
+  unitypathplanning:
+    build: Unity
+    ports:
+        - ${UnityPathPlanningService}:${DOCKER_STDP}
+    command: [ "PathPlanningService" , "${MIPA}" , "${DOCKER_STDP}" , "${UnityPathPlanningService}" , "${LAUNCHER}" ]
+    depends_on:
+        - unityadapter
+
