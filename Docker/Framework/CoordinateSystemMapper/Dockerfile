@@ -26,4 +26,4 @@ WORKDIR /root/MOSIM-CSharp/Services/CoordinateSystemMapper
 RUN nuget restore CoordinateSystemMapper.sln
 RUN msbuild /p:Configuration=Release CoordinateSystemMapper.sln
 
-ENTRYPOINT ["/root/MOSIM/Docker/Framework/Coordinatesystemmapper/run.sh" ]
+ENTRYPOINT ["/root/MOSIM/Docker/Framework/CoordinateSystemMapper/run.sh" ]
