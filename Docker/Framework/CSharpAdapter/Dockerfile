@@ -38,8 +38,8 @@ WORKDIR /Environment/Adapters/CSharpAdapter
 
 # ENTRYPOINT [ "mono", "MMIAdapterCSharp.exe"]
 
-ENTRYPOINT [ "/bin/bash" ]
+# ENTRYPOINT [ "/bin/bash" ]
 
 # ENTRYPOINT [ "/root/wait.sh" ]
 
-# ENTRYPOINT [ "/root/MOSIM/Docker/Framework/CSharpAdapter/run.sh" ]
+ENTRYPOINT [ "/root/MOSIM/Docker/Framework/CSharpAdapter/run.sh" ]
