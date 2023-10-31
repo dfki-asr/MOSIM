@@ -3,8 +3,8 @@
 MIPA=$2
 DOCKER_STDP=$3
 DOCKER_STDIPP=${MIPA}:${DOCKER_STDP}
-UnityComponent=$4
-UnityComponent_IPP=${MIPA}:${UnityComponent}
+CSharpComponent=$4
+CSharpComponent_IPP=${MIPA}:${UnityComponent}
 LAUNCHER_IPP=$5
 
 echo "CSharp" $1 $2 $3 $4 $5
@@ -34,7 +34,7 @@ case $1 in
 
 	echo "Coordinate System Mapper Service" ;
 	
-	mono /root/MOSIM-CSharp/Services/CoordinateSystemMapper/CoordinateSystemMapper/bin/Release/CoordinateSystemMapper.exe -a ${CoordinateSystemMapper_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP}
+	mono /root/MOSIM-CSharp/Services/CoordinateSystemMapper/CoordinateSystemMapper/bin/Release/CoordinateSystemMapper.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP}
 	
 	echo "Finished Coordinate System Mapper Service" ;;
 
@@ -42,7 +42,7 @@ case $1 in
 
     echo "Posture Blending Service" ;
     
-	mono /root/MOSIM-CSharp/Services/PostureBlendingService/PostureBlendingService/bin/Release/PostureBlendingService.exe -a ${PostureBlendingService_IPP} -aint ${DOCKER_STDP_IPP} -r ${LAUNCHER_IPP}
+	mono /root/MOSIM-CSharp/Services/PostureBlendingService/PostureBlendingService/bin/Release/PostureBlendingService.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDP_IPP} -r ${LAUNCHER_IPP}
 	
 	echo "Finished Posture Blending Service" ;;
 	
