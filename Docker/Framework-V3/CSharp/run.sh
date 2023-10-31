@@ -4,7 +4,7 @@ MIPA=$2
 DOCKER_STDP=$3
 DOCKER_STDIPP=${MIPA}:${DOCKER_STDP}
 CSharpComponent=$4
-CSharpComponent_IPP=${MIPA}:${UnityComponent}
+CSharpComponent_IPP=${MIPA}:${CSharpComponent}
 LAUNCHER_IPP=$5
 
 echo "CSharp" $1 $2 $3 $4 $5
