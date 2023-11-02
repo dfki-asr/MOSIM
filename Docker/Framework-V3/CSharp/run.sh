@@ -12,8 +12,8 @@ echo "CSharp" $1 $2 $3 $4 $5
 echo MIPA ${MIPA}
 echo DOCKER_STDP ${DOCKER_STDP}
 echo DOCKER_STDIPP ${DOCKER_STDIPP}
-echo UnityAdapter ${UnityAdapter}
-echo UnityAdapter_IPP ${UnityAdapter_IPP}
+echo CSharpComponent ${CSharpComponent}
+echo CSharpComponent_IPP ${CSharpComponent_IPP}
 echo LAUNCHER_IPP ${LAUNCHER_IPP}
 
 case $1 in
