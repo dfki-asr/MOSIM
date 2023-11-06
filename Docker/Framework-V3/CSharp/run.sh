@@ -42,7 +42,7 @@ case $1 in
 
     echo "Posture Blending Service" ;
     
-	mono /root/MOSIM-CSharp/Services/PostureBlendingService/PostureBlendingService/bin/Release/PostureBlendingService.exe -a ${CSharpComponentIPP} -aint ${DOCKER_STDP_IPP} -r ${LAUNCHER_IPP}
+	mono /root/MOSIM-CSharp/Services/PostureBlendingService/PostureBlendingService/bin/Release/PostureBlendingService.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDPIPP} -r ${LAUNCHER_IPP}
 	
 	echo "Finished Posture Blending Service" ;;
 	
