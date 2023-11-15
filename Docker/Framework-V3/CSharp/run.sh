@@ -7,6 +7,8 @@ CSharpComponent=$4
 CSharpComponent_IPP=${MIPA}:${CSharpComponent}
 LAUNCHER_IPP=$5
 
+LOG="/tmp/MOSIM"
+
 echo "CSharp" $1 $2 $3 $4 $5
 
 echo MIPA ${MIPA}
@@ -16,35 +18,76 @@ echo CSharpComponent ${CSharpComponent}
 echo CSharpComponent_IPP ${CSharpComponent_IPP}
 echo LAUNCHER_IPP ${LAUNCHER_IPP}
 
+echo LOG=${LOG}
+
+if [ ! -d ${LOG} ]
+then
+	mkdir ${LOG}
+fi
+
 case $1 in
 
 "CSharpAdapter" )
 
-	echo "C# Adapter" ;
+	echo "Starting C# Adapter" ;
 	
-	cp /root/MOSIM/Docker/Framework/CSharpAdapter/run.sh /
+	/root/CreateEnvironment.sh "/Environment"
+	
+	mv /root/MOSIM-CSharp/Core/Adapter/MMIAdapterCSharp/bin/Release/* /Environment/Adapters/CSharpAdapter
+	
+	/root/CopyMMUs.sh "/Environment" > ${LOG}/CSharpAdapter.log
 	
 	cd /Environment/Adapters/CSharpAdapter
 
-	mono MMIAdapterCSharp.exe -a ${CsharpAdapter_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} -m ../../MMUs
+	mono MMIAdapterCSharp.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} -m ../../MMUs >> ${LOG}/CSharpAdapter.log
 
 	echo "Finished" ;;
 
 "CoordinateSystemMapper" )
 
-	echo "Coordinate System Mapper Service" ;
+	echo "Statring  Coordinate System Mapper Service" ;
 	
-	mono /root/MOSIM-CSharp/Services/CoordinateSystemMapper/CoordinateSystemMapper/bin/Release/CoordinateSystemMapper.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP}
+	mono /root/MOSIM-CSharp/Services/CoordinateSystemMapper/CoordinateSystemMapper/bin/Release/CoordinateSystemMapper.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} > ${LOG}/CoordinateSystemMapper.log
 	
 	echo "Finished Coordinate System Mapper Service" ;;
+	
+"Launcher" )
+
+	echo "Starting Launcher" ;
+	
+	cd /root/MOSIM-CSharp/Core/Launcher/MMILauncher.Console/bin/Debug
+	
+	/root/CreateEnvironment.sh ".."
+	
+	/root/CopyMMUs.sh ".."
+	
+	mono MMILauncher.Console.exe -p ${DOCKER_STDP} > ${LOG}/Launcher.log ;
+	
+	echo "Finshed Launcher" ;;
 
 "PostureBlending" )
 
-    echo "Posture Blending Service" ;
+    echo "Statring  Posture Blending Service" ;
     
-	mono /root/MOSIM-CSharp/Services/PostureBlendingService/PostureBlendingService/bin/Release/PostureBlendingService.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP}
+	mono /root/MOSIM-CSharp/Services/PostureBlendingService/PostureBlendingService/bin/Release/PostureBlendingService.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} > ${LOG}/PostureBlending.log
 	
 	echo "Finished Posture Blending Service" ;;
+	
+"Retargeting" )
+
+    echo "Statring Retargeting Service" ;
+    
+	mono /root/MOSIM-CSharp/Services/RetargetingService/RetargetingService/bin/Release/RetargetingService.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} > ${LOG}/Retargeting.log
+	
+	echo "Finished Retargeting" ;;
+
+"SkeletonAccess" )
+
+    echo "Statring SkeletonAccess Service" ;
+    
+	mono /root/MOSIM-CSharp/Services/SkeletonAccessService/SkeletonAccessService/bin/Release/SkeletonAccessService.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} > ${LOG}/SkeletonAccess.log
+	
+	echo "Finished SkeletonAccess" ;;
 	
 * )
 	echo "Unknown C# Component" ;;
