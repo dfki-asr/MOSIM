@@ -57,11 +57,11 @@ case $1 in
 	
 	cd /root/MOSIM-CSharp/Core/Launcher/MMILauncher.Console/bin/Debug
 	
-	/root/CreateEnvironment.sh ".."
+	/root/MOSIM/Docker/Framework-V3/CSharp/CreateEnvironment.sh ".."
 	
-	/root/CopyMMUs.sh ".."
+	/root/MOSIM/Docker/Framework-V3/CSharp/CopyMMUs.sh ".."
 	
-	mono MMILauncher.Console.exe -p ${DOCKER_STDP} > ${LOG}/Launcher.log ;
+	mono MMILauncher.Console.exe -p ${DOCKER_STDP} ;
 	
 	echo "Finshed Launcher" ;;
 
