@@ -31,11 +31,11 @@ case $1 in
 
 	echo "Starting C# Adapter" ;
 	
-	/root/CreateEnvironment.sh "/Environment"
+	/root/MOSIM/Docker/Framework-V3/CSharp/CreateEnvironment.sh "/Environment"
 	
 	mv /root/MOSIM-CSharp/Core/Adapter/MMIAdapterCSharp/bin/Release/* /Environment/Adapters/CSharpAdapter
 	
-	/root/CopyMMUs.sh "/Environment" > ${LOG}/CSharpAdapter.log
+	/root/MOSIM/Docker/Framework-V3/CSharp/CSharp/CopyMMUs.sh "/Environment" > ${LOG}/CSharpAdapter.log
 	
 	cd /Environment/Adapters/CSharpAdapter
 
@@ -55,7 +55,7 @@ case $1 in
 
 	echo "Starting Launcher" ;
 	
-	cd /root/MOSIM-CSharp/Core/Launcher/MMILauncher.Console/bin/Debug
+	cd /root/MOSIM-CSharp/Core/Launcher/MMILauncher.Console/bin/Release
 	
 	/root/MOSIM/Docker/Framework-V3/CSharp/CreateEnvironment.sh ".."
 	
