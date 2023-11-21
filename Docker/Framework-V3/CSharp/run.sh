@@ -35,7 +35,7 @@ case $1 in
 	
 	mv /root/MOSIM-CSharp/Core/Adapter/MMIAdapterCSharp/bin/Debug/* /Environment/Adapters/CSharpAdapter
 	
-	/root/MOSIM/Docker/Framework-V3/CSharp/CSharp/CopyMMUs.sh "/Environment" > ${LOG}/CSharpAdapter.log
+	/root/MOSIM/Docker/Framework-V3/CSharp/CopyMMUs.sh "/Environment" > ${LOG}/CSharpAdapter.log
 	
 	cd /Environment/Adapters/CSharpAdapter
 
