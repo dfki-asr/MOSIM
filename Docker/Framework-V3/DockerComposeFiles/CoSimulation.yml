@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  cosimulation:
+    build: CoSimulation
+    ports:
+        - ${CoSimulation}:${DOCKER_STDP}
+        - ${CoSimulationServ}:${DOCKER_STDP2}
+    command: [ "CoSimulation" , "${MIPA}" , "${DOCKER_STDP}" , "${CoSimulation}" ,  "${LAUNCHER}" , "${DOCKER_STDP2}" , "${CoSimulationServ}" ]
+

@@ -24,7 +24,11 @@ RUN msbuild /p:Configuration=Release MMICSharp-Core.sln
 WORKDIR /root/MOSIM-CSharp/MMUs
 RUN nuget restore CS.sln
 RUN msbuild /p:Configuration=Debug CS.sln
-RUN /bin/bash -c /root/MOSIM/Docker/Framework/CSharpAdapter/copy.sh
+# RUN /bin/bash -c /root/MOSIM/Docker/Framework/CSharpAdapter/copy.sh
+
+WORKDIR /root/MOSIM-CSharp/Core/Adapter
+RUN nuget restore Adapter.sln
+RUN msbuild /p:Configuration=Debug Adapter.sln
 
 WORKDIR /root/MOSIM-CSharp/Services/CoordinateSystemMapper
 RUN nuget restore CoordinateSystemMapper.sln
@@ -42,6 +46,16 @@ WORKDIR /root/MOSIM-CSharp/Services/SkeletonAccessService
 RUN nuget restore SkeletonAccessService.sln
 RUN msbuild /p:Configuration=Release SkeletonAccessService.sln
 
+WORKDIR /root/MOSIM-CSharp/Core/Launcher/MMILauncher.Console
+RUN nuget restore MMILauncher.Console.csproj -PackagesDirectory ../packages
+RUN msbuild /p:Configuration=Debug MMILauncher.Console.csproj
+
+# ADD . /mnt
+
+WORKDIR /root
+
 # ENTRYPOINT ["/bin/bash" ]
 
 ENTRYPOINT [ "/root/MOSIM/Docker/Framework-V3/CSharp/run.sh" ]
+
+# ENTRYPOINT [ "/mnt/run.sh" ]

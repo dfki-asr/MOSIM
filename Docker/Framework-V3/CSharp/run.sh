@@ -6,6 +6,7 @@ DOCKER_STDIPP=${MIPA}:${DOCKER_STDP}
 CSharpComponent=$4
 CSharpComponent_IPP=${MIPA}:${CSharpComponent}
 LAUNCHER_IPP=$5
+DEBUG=$6
 
 LOG="/tmp/MOSIM"
 
@@ -35,21 +36,49 @@ case $1 in
 	
 	mv /root/MOSIM-CSharp/Core/Adapter/MMIAdapterCSharp/bin/Debug/* /Environment/Adapters/CSharpAdapter
 	
-	/root/MOSIM/Docker/Framework-V3/CSharp/CopyMMUs.sh "/Environment" > ${LOG}/CSharpAdapter.log
+	if [ -z ${DEBUG} ] ;
+	then
+		/root/MOSIM/Docker/Framework-V3/CSharp/CopyMMUs.sh "/Environment" > ${LOG}/CSharpAdapter.log ;
+	else
+		/root/MOSIM/Docker/Framework-V3/CSharp/CopyMMUs.sh "/Environment" ;
+	fi
 	
 	cd /Environment/Adapters/CSharpAdapter
 
-	mono MMIAdapterCSharp.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} -m ../../MMUs >> ${LOG}/CSharpAdapter.log
+	if [ -z ${DEBUG} ] ;
+	then
+		mono MMIAdapterCSharp.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} -m ../../MMUs >> ${LOG}/CSharpAdapter.log ;
+	else
+		mono MMIAdapterCSharp.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} -m ../../MMUs ;
+	fi
 
 	echo "Finished" ;;
 
 "CoordinateSystemMapper" )
 
-	echo "Statring  Coordinate System Mapper Service" ;
+	echo "Starting  Coordinate System Mapper Service" ;
 	
-	mono /root/MOSIM-CSharp/Services/CoordinateSystemMapper/CoordinateSystemMapper/bin/Release/CoordinateSystemMapper.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} > ${LOG}/CoordinateSystemMapper.log
+	if [ -z ${DEBUG} ] ;
+	then
+		mono /root/MOSIM-CSharp/Services/CoordinateSystemMapper/CoordinateSystemMapper/bin/Release/CoordinateSystemMapper.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} > ${LOG}/CoordinateSystemMapper.log ;
+	else
+		mono /root/MOSIM-CSharp/Services/CoordinateSystemMapper/CoordinateSystemMapper/bin/Release/CoordinateSystemMapper.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} ;
+	fi
 	
 	echo "Finished Coordinate System Mapper Service" ;;
+
+"CoSimulation" )
+
+	echo "Starting  CoSimulation" ;
+
+	if [ -z $8 ] ;
+	then
+		mono /root/MOSIM-CSharp/Core/CoSimulator/CoSimulationStandalone/bin/Release/CoSimulationStandalone.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP1} -aserv ${MIPA}:$6 -aservint ${MIPA}:$7 -r ${LAUNCHER_IPP} > ${LOG}/CoSimulation.log ;
+	else
+		mono /root/MOSIM-CSharp/Core/CoSimulator/CoSimulationStandalone/bin/Release/CoSimulationStandalone.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP1} -aserv ${MIPA}:$6 -aservint ${MIPA}:$7 -r ${LAUNCHER_IPP}
+	fi
+
+	echo "Finished CoSimulation" ;;
 	
 "Launcher" )
 
@@ -61,7 +90,7 @@ case $1 in
 	
 	/root/MOSIM/Docker/Framework-V3/CSharp/CopyMMUs.sh ".."
 	
-	mono MMILauncher.Console.exe -p ${DOCKER_STDP} ;
+	mono MMILauncher.Console.exe -p $3 ;
 	
 	echo "Finshed Launcher" ;;
 
@@ -69,23 +98,38 @@ case $1 in
 
     echo "Statring  Posture Blending Service" ;
     
-	mono /root/MOSIM-CSharp/Services/PostureBlendingService/PostureBlendingService/bin/Release/PostureBlendingService.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} > ${LOG}/PostureBlending.log
-	
+	if [ -z ${DEBUG} ] ;
+	then
+		mono /root/MOSIM-CSharp/Services/PostureBlendingService/PostureBlendingService/bin/Release/PostureBlendingService.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} > ${LOG}/PostureBlending.log ;
+	else
+		mono /root/MOSIM-CSharp/Services/PostureBlendingService/PostureBlendingService/bin/Release/PostureBlendingService.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} ;
+	fi
+
 	echo "Finished Posture Blending Service" ;;
 	
 "Retargeting" )
 
     echo "Statring Retargeting Service" ;
     
-	mono /root/MOSIM-CSharp/Services/RetargetingService/RetargetingService/bin/Release/RetargetingService.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} > ${LOG}/Retargeting.log
+	if [ -z ${DEBUG} ] ;
+	then
+		mono /root/MOSIM-CSharp/Services/RetargetingService/RetargetingService/bin/Release/RetargetingService.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} > ${LOG}/Retargeting.log ;
+	else
+		mono /root/MOSIM-CSharp/Services/RetargetingService/RetargetingService/bin/Release/RetargetingService.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} ;
+	fi
 	
 	echo "Finished Retargeting" ;;
 
 "SkeletonAccess" )
 
     echo "Statring SkeletonAccess Service" ;
-    
-	mono /root/MOSIM-CSharp/Services/SkeletonAccessService/SkeletonAccessService/bin/Release/SkeletonAccessService.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} > ${LOG}/SkeletonAccess.log
+	
+	if [ -z ${DEBUG} ] ;
+	then   
+		mono /root/MOSIM-CSharp/Services/SkeletonAccessService/SkeletonAccessService/bin/Release/SkeletonAccessService.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} > ${LOG}/SkeletonAccess.log ;
+	else
+		mono /root/MOSIM-CSharp/Services/SkeletonAccessService/SkeletonAccessService/bin/Release/SkeletonAccessService.exe -a ${CSharpComponent_IPP} -aint ${DOCKER_STDIPP} -r ${LAUNCHER_IPP} ;
+	fi
 	
 	echo "Finished SkeletonAccess" ;;
 	
