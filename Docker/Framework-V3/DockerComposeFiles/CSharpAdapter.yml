@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   csharpadapter:
-    build: CSharpAdapter
+    build: CSharp
     image: mosim01/mosim-v3:csharp
     ports:
         - ${CSharpAdapter}:${DOCKER_STDP}
