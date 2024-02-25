@@ -28,6 +28,10 @@ python Scripts\String-replace.py %MANIFEST% de.dfki.mmiunity-core file:..\..\..\
 SET MANIFEST= %HOME%\Repos\MOSIM-Unity\Services\UnityPathPlanning\UnityPathPlanningService\Packages\manifest.json
 python Scripts\String-replace.py %MANIFEST% de.dfki.mmiunity-core file:..\..\..\..\..%REPLACE1%
 
+SET MANIFEST= %HOME%\Repos\MOSIM-Unity\Services\UnityIKService\Packages\manifest.json
+python Scripts\String-replace.py %MANIFEST% de.dfki.mmiunity-core file:..\..\..\..%REPLACE1%
+
+
 SET MANIFEST= %~dp0..\Repos\MOSIM-Unity\Tools\SkeletonConfigurator\Packages\manifest.json
 python Scripts\String-replace.py %MANIFEST% de.dfki.mmiunity-core file:..\..\..\..%REPLACE1%
 
