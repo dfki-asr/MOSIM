@@ -4,7 +4,7 @@ call :CheckPowershell PARENT
 
 REM Please adjust the following paths to your system. 
 SET "DEFAULT_MOSIM_MSBUILD=C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\MSBuild\Current\Bin\MSBuild.exe"
-SET "DEFAULT_MOSIM_UNITY=C:\Program Files\Unity\Hub\Editor\2019.4.25f1\Editor\Unity.exe"
+SET "DEFAULT_MOSIM_UNITY=C:\Program Files\Unity\Hub\Editor\2021.3.9f1\Editor\Unity.exe"
 SET "DEFAULT_MOSIM_TARGET_PATH=%UserProfile%\MOSIM\"
 
 REM Please do not adjust the following values
