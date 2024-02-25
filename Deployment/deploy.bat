@@ -37,12 +37,6 @@ REM )
 
 REM COPY Scripts\enableFirewall.exe .\build\
 
-REM echo Removing doublicated MMUs
-pause
-call .\remove_double_mmus.bat
-
-echo Removing doublicated MMUs done.
-
 REM the link currently does not yet work. 
 REM RD build\
 REM 

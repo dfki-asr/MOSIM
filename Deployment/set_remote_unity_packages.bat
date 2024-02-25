@@ -2,7 +2,7 @@
 REM Set absolute path to meta repository
 SET HOME2=%~dp0\..
 FOR /F %%i IN ("%HOME2%") DO SET "HOME=%%~fi"
-echo %HOME%
+echo "Home is %HOME%"
 REM get current branch
 REM cd %HOME%\Repos\MOSIM-Unity
 
@@ -23,7 +23,6 @@ if %Current_Branch%==master (
 )
 
 REM cd %HOME%\Deployment
-
 
 ECHO "This batch file changes the manifest.json."
 ECHO "It will result in the git packages being used as the Unity packages."
@@ -48,6 +47,9 @@ SET MANIFEST= %HOME%\Repos\MOSIM-Unity\Adapter\MMIAdapterUnity\Packages\manifest
 python Scripts\String-replace.py %MANIFEST% de.dfki.mmiunity-core %REPLACE1%
 
 SET MANIFEST= %HOME%\Repos\MOSIM-Unity\Services\UnityPathPlanning\UnityPathPlanningService\Packages\manifest.json
+python Scripts\String-replace.py %MANIFEST% de.dfki.mmiunity-core %REPLACE1%
+
+SET MANIFEST= %HOME%\Repos\MOSIM-Unity\Services\UnityIKService\Packages\manifest.json
 python Scripts\String-replace.py %MANIFEST% de.dfki.mmiunity-core %REPLACE1%
 
 SET MANIFEST= %~dp0..\Repos\MOSIM-Unity\Tools\SkeletonConfigurator\Packages\manifest.json
