@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+
+  retargetingservice:
+    build: CSharp
+    image: ${CSHARP_IMAGE}
+    ports:
+        - ${RetargetingService}:${DOCKER_STDP}
+    command: [ "Retargeting" , "${MIPA}" , "${DOCKER_STDP}" , "${RetargetingService}" , "${LAUNCHER_IPP}" ]
+
+
+
+
+

@@ -3,10 +3,9 @@ version: "3.9"
 services:
   csharpadapter:
     build: CSharp
-    image: mosim01/mosim-v3:csharp
+    image: ${CSHARP_IMAGE}
     ports:
         - ${CSharpAdapter}:${DOCKER_STDP}
     stdin_open: true
     tty: true 
     command: [ "CSharpAdapter" , "${MIPA}" , "${DOCKER_STDP}" , "${CSharpAdapter}" , "${LAUNCHER_IPP}" ]
-#    command: [ "/root/wait.sh" ]

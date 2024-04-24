@@ -4,11 +4,11 @@ services:
 
   launcher:
     build: CSharp
-    image: mosim01/mosim-v3:csharp
+    image: ${CSHARP_IMAGE}
     stdin_open: true
     tty: true
     ports:
         - ${LAUNCHER}:${DOCKER_STDP}
     command: [ "Launcher" , "${MIPA}" , "${DOCKER_STDP}" ]
     volumes:
-        - C:\AIToC\Hyllis\data:/data
+        - /home/kuf/data:/data

@@ -4,21 +4,21 @@ services:
 
   unityadapter:
     build: Unity
-    image: mosim01/mosim-v3:unity
+    image: ${UNITY_IMAGE}
     ports:
         - ${UnityAdapter}:${DOCKER_STDP}
     command: [ "Adapter" , "${MIPA}" , "${DOCKER_STDP}" , "${UnityAdapter}" , "${LAUNCHER_IPP}" ]
     
   unitypathplanning:
     build: Unity
-    image: mosim01/mosim-v3:unity
+    image: ${UNITY_IMAGE}
     ports:
         - ${UnityPathPlanningService}:${DOCKER_STDP}
     command: [ "PathPlanningService" , "${MIPA}" , "${DOCKER_STDP}" , "${UnityPathPlanningService}" , "${LAUNCHER_IPP}" ]
     
   unityikservice:
     build: Unity
-    image: mosim01/mosim-v3:unity
+    image: ${UNITY_IMAGE}
     ports:
         - ${UnityIKService}:${DOCKER_STDP}
     command: [ "IKService" , "${MIPA}" , "${DOCKER_STDP}" , "${UnityIKService}" , "${LAUNCHER_IPP}" ]

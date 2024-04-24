@@ -2,7 +2,8 @@ version: "3.9"
 
 services:
   cosimulation:
-    build: CoSimulation
+    build: CSharp
+    image: ${CSHARP_IMAGE}
     ports:
         - ${CoSimulation}:${DOCKER_STDP}
         - ${CoSimulationServ}:${DOCKER_STDP2}

@@ -4,28 +4,28 @@ services:
 
   coordinatesystemmapper:
     build: CSharp
-    image: mosim01/mosim-v3:csharp
+    image: ${CSHARP_IMAGE}
     ports:
         - ${CoordinateSystemMapper}:${DOCKER_STDP}
     command: [ "CoordinateSystemMapper" , "${MIPA}" , "${DOCKER_STDP}" , "${CoordinateSystemMapper}" , "${LAUNCHER_IPP}" ]
     
   postureblendingservice:
     build: CSharp
-    image: mosim01/mosim-v3:csharp
+    image: ${CSHARP_IMAGE}
     ports:
         - ${PostureBlendingService}:${DOCKER_STDP}
     command: [ "PostureBlending" , "${MIPA}" , "${DOCKER_STDP}" , "${PostureBlendingService}" , "${LAUNCHER_IPP}" ]
 
   retargetingservice:
     build: CSharp
-    image: mosim01/mosim-v3:csharp
+    image: ${CSHARP_IMAGE}
     ports:
         - ${RetargetingService}:${DOCKER_STDP}
     command: [ "Retargeting" , "${MIPA}" , "${DOCKER_STDP}" , "${RetargetingService}" , "${LAUNCHER_IPP}" ]
 
   skeletonaccessservice:
     build: CSharp
-    image: mosim01/mosim-v3:csharp
+    image: ${CSHARP_IMAGE}
     ports:
         - ${SkeletonAccessService}:${DOCKER_STDP}
     command: [ "SkeletonAccess" , "${MIPA}" , "${DOCKER_STDP}" , "${SkeletonAccessService}" , "${LAUNCHER_IPP}" ]
